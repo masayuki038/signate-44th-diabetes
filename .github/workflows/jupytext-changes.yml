@@ -55,7 +55,7 @@ jobs:
       run: |
         echo "message=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
         echo "author=$(git log -1 --pretty=\"%an <%ae>\")" >> $GITHUB_OUTPUT
- 
+
     # Auto commit any updated notebook files
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
