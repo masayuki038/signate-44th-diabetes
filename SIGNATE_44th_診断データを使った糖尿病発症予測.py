@@ -15,11 +15,11 @@
 # + [markdown] id="view-in-github" colab_type="text"
 # <a href="https://colab.research.google.com/github/masayuki038/signate-44th-diabetes/blob/main/SIGNATE_44th_%E8%A8%BA%E6%96%AD%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E7%B3%96%E5%B0%BF%E7%97%85%E7%99%BA%E7%97%87%E4%BA%88%E6%B8%AC.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-# + _kg_hide-output=true _kg_hide-input=true id="Rf3KKixN6lSM"
+# + _kg_hide-output=true _kg_hide-input=true id="Rf3KKixN6lSM" colab={"base_uri": "https://localhost:8080/"} outputId="b34a5b37-22b5-459d-8fb4-c8ff249e1091"
 # !pip install --quiet pycaret==3.2
 # !pip install --quiet shapely>=2.0.1
 
-# + id="BQvEZZOs8gnX"
+# + id="BQvEZZOs8gnX" colab={"base_uri": "https://localhost:8080/"} outputId="ddac62bf-15c6-4843-ad26-0997cb40bb9d"
 # !pip install --quiet catboost
 
 # + [markdown] id="p5lEGNny6lRs"
@@ -76,7 +76,7 @@ df_test = pd.read_csv('/var/SIGNATE/44th/test.csv')
 #Train Data
 df_train = pd.read_csv('/var/SIGNATE/44th/train.csv')
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="FuJCvKVJoaTL" outputId="bca30cef-d7ae-4f44-e82e-4a2033835574"
+# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="FuJCvKVJoaTL" outputId="5317310c-9bae-44b5-f94d-c54cd388476e"
 df_train.head()
 
 # + id="BjqO49NS6lRv"
@@ -88,10 +88,10 @@ test_id = df_test["index"]
 # + [markdown] id="DwoMIzkOo_mN"
 #
 
-# + id="FqXxnD2h6lRz" colab={"base_uri": "https://localhost:8080/", "height": 206} outputId="dab23467-d7ca-4b24-cdc7-4ef15655de63"
+# + id="FqXxnD2h6lRz" colab={"base_uri": "https://localhost:8080/", "height": 206} outputId="9fd4a043-5bc6-4e1e-fc8e-9d1a519e62d7"
 df_submission.head()
 
-# + colab={"base_uri": "https://localhost:8080/"} id="LQqVH4Qrb4zR" outputId="aee9e745-c95f-46db-eb4f-9cbcc654b266"
+# + colab={"base_uri": "https://localhost:8080/"} id="LQqVH4Qrb4zR" outputId="8d761831-d7e0-4e07-d3d8-afaa797e55a9"
 # ここから再開
 num_train_rows, num_train_columns = df_train.shape
 
@@ -111,9 +111,7 @@ print("Submission Data:")
 print(f"Number of Rows: {num_submission_rows}")
 print(f"Number of Columns: {num_submission_columns}")
 
-print("Test for Github Action part 4")
-
-# + colab={"base_uri": "https://localhost:8080/"} id="mKNvSa7efpj9" outputId="ba5fae69-3028-4c5c-8850-67696d3ff32f"
+# + colab={"base_uri": "https://localhost:8080/"} id="mKNvSa7efpj9" outputId="fd05baf1-7850-4c74-ad94-573b51d6f0b8"
 # Null Values in Train
 train_null = df_train.isnull().sum().sum()
 
@@ -127,7 +125,7 @@ print(f'Null Count in Train: {train_null}')
 print(f'Null Count in Test: {test_null}')
 print(f'Null Count in Submission: {submission_null}')
 
-# + colab={"base_uri": "https://localhost:8080/"} id="Jj-5hOhrfxMR" outputId="637f5aa1-d499-4ea6-a6ce-bc95688b6fb7"
+# + colab={"base_uri": "https://localhost:8080/"} id="Jj-5hOhrfxMR" outputId="56148bff-1c4a-4cf5-90a8-44d9d0f08f73"
 # Count duplicate rows in train_data
 train_duplicates = df_train.duplicated().sum()
 
@@ -142,10 +140,10 @@ print(f"Number of duplicate rows in train_data: {train_duplicates}")
 print(f"Number of duplicate rows in test_data: {test_duplicates}")
 print(f"Number of duplicate rows in test_data: {submission_duplicates}")
 
-# + colab={"base_uri": "https://localhost:8080/"} id="8BUVAnVGf4G5" outputId="e7a1874a-886b-4e04-d21f-8f808bcaea98"
+# + colab={"base_uri": "https://localhost:8080/"} id="8BUVAnVGf4G5" outputId="41d1cf72-57c9-47ed-f9d8-8491a510e5b8"
 df_train.info()
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 300} id="RYQ9PD8gf5j2" outputId="f61e0223-1132-4bf8-9abd-97dafd49b1d1"
+# + colab={"base_uri": "https://localhost:8080/", "height": 300} id="RYQ9PD8gf5j2" outputId="3e02516e-7314-4037-f47f-2686cb1389ad"
 df_train.describe()
 
 
@@ -175,47 +173,47 @@ def plot_numerical_distribution_with_hue(data, num_cols, hue_col, figsize=(60, 3
 num_cols = ['Pregnancies',	'Glucose',	'BloodPressure',	'SkinThickness',	'Insulin',	'BMI',	'DiabetesPedigreeFunction',	'Age']
 #plot_numerical_distribution_with_hue(df_train, num_cols, 'Outcome')
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="huXtxWkmLKEv" outputId="87059ac5-4d3c-4162-df5e-7faba494defa"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="huXtxWkmLKEv" outputId="aa7651b0-6f67-46e5-876d-2325c29132f6"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 plt.ylim(0, 200)
 fig.map(sns.histplot, 'Age', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="kz8YRzX0LzNb" outputId="c0284bc5-1dcb-4c05-9640-afe3b6b8c601"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="kz8YRzX0LzNb" outputId="f0255a75-7766-4086-e390-56d963b05b31"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 fig.map(sns.histplot, 'Pregnancies', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="ZhSCKy4PMbCs" outputId="7a611e90-b70d-40a9-9b62-ec7c16009c52"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="ZhSCKy4PMbCs" outputId="6b631463-dbf1-4e22-e019-7febd0c8c674"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 fig.map(sns.histplot, 'Glucose', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="8xeZzVUSMmh5" outputId="07235329-a78a-47f6-f6a0-0580c36ef9fe"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="8xeZzVUSMmh5" outputId="213f5bc5-6240-4f5e-fdd9-b66081d6ba10"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 plt.ylim(0, 200)
 fig.map(sns.histplot, 'SkinThickness', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="E4TOU12qM2P3" outputId="7462974f-d71c-4070-fbdf-66bfe5e61fbe"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="E4TOU12qM2P3" outputId="b0a2b0a0-e4a3-4657-e1a0-c921835c37a6"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 plt.ylim(0, 200)
 fig.map(sns.histplot, 'BloodPressure', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="mrt_7mQWNM-M" outputId="483544a9-71af-4224-c0b8-85d46ffb9a06"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="mrt_7mQWNM-M" outputId="a41ae5e3-6ac4-43b6-aab9-098496c1fd5e"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 plt.ylim(0, 25)
 fig.map(sns.histplot, 'Insulin', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="pAwEXKH5Nd6j" outputId="355a4007-c48b-431f-d883-1e8228919d30"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="pAwEXKH5Nd6j" outputId="f1f97bbd-e8bf-46bc-e629-6c74440fcac6"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 plt.ylim(0, 200)
 fig.map(sns.histplot, 'DiabetesPedigreeFunction', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="rMIhaLN0NkE5" outputId="7e557491-694d-493b-cc6c-b9594947620c"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="rMIhaLN0NkE5" outputId="2021fef7-bd1c-4902-d77c-0ba7dc77cd69"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 fig.map(sns.histplot, 'BMI', bins=40, kde=False)
 
 # + id="xi1dp1EF4zcQ"
 #plot_numerical_distribution_with_hue(df_train, num_cols, 'Outcome')
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 974} id="P-yCyvep53sG" outputId="1574c3c9-b764-4314-af3a-d48f9d987c42"
+# + colab={"base_uri": "https://localhost:8080/", "height": 974} id="P-yCyvep53sG" outputId="3b1e6d69-3dee-4eb9-afd9-e44e3e043797"
 # Select only numeric columns
 numeric_df_train = df_train.select_dtypes(include='number')
 
@@ -232,7 +230,7 @@ plt.show()
 # + [markdown] id="aGG80YRB6lSG"
 # # <p style="font-family:newtimeroman;font-size:100%;text-align:center;color:#F52549;">Correlation Analysis</p>
 
-# + id="CzUyFBmw6lSG" colab={"base_uri": "https://localhost:8080/"} outputId="73091281-46a5-4775-b05b-d5e83ad020c2"
+# + id="CzUyFBmw6lSG" colab={"base_uri": "https://localhost:8080/"} outputId="739509c4-8056-4e16-ccac-9120e9c71cc3"
 # Define the correlation threshold
 threshold = 0.2
 
@@ -266,15 +264,15 @@ df_test.drop(['index'], axis=1, inplace=True)
 #train_x, test_x, train_y, test_y = train_test_split(
 #    df_train.drop('Outcome', axis=1), outcome, test_size=0.3, random_state=42)
 
-# + id="I_IJk_fW6lSH" colab={"base_uri": "https://localhost:8080/"} outputId="6863f297-90a8-41eb-a0e1-334b0a55b431"
+# + id="I_IJk_fW6lSH" colab={"base_uri": "https://localhost:8080/"} outputId="68853b6a-811e-4592-969d-940713514b39"
 # Shape of Train and Test
 print(f"The shape of Train data is {df_train.shape}")
 print(f"The shape of Test data is {df_test.shape}")
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="qqhruObgANoA" outputId="37cf87d5-f5ac-49ad-c9ef-48bc8523f1a2"
+# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="qqhruObgANoA" outputId="c0738d2c-5847-444b-e766-8655a217b051"
 df_train.head()
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="SZ_-rBvtAT2N" outputId="b8b9d0dd-3e5c-48f6-f11b-0ae36ec745c3"
+# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="SZ_-rBvtAT2N" outputId="5f4638c1-e931-422c-baa9-ff110cf43d13"
 df_test.head()
 
 # + id="43E9dgRuiniB"
@@ -298,7 +296,7 @@ df_test.drop(['SkinThickness'], axis=1, inplace=True)
 #df_train[df_train['SkinThickness'] != 0]
 df_train = df_train[df_train['BloodPressure'] != 0]
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} outputId="1880809b-253b-4893-e0cf-e9b0b344a183" id="Wqx_c9WbrBz9"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} outputId="b556f6a4-62fc-474e-86ab-d3cd2c700d90" id="Wqx_c9WbrBz9"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 plt.ylim(0, 200)
 fig.map(sns.histplot, 'BloodPressure', bins=40, kde=False)
@@ -306,11 +304,11 @@ fig.map(sns.histplot, 'BloodPressure', bins=40, kde=False)
 # + id="3rNA6knzvcSN"
 df_train = df_train[df_train['BMI'] > 20.0]
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 418} id="K7_lTOVnvlo0" outputId="9e0e3a0e-a2a2-49c5-f230-4f2e329ddd4e"
+# + colab={"base_uri": "https://localhost:8080/", "height": 424} id="K7_lTOVnvlo0" outputId="dfff25ad-5200-4ace-bc6e-c400040257af"
 fig = sns.FacetGrid(df_train, col='Outcome', hue='Outcome', height=4)
 fig.map(sns.histplot, 'BMI', bins=40, kde=False)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="QJzfTvqSm5tR" outputId="6c9cca5a-3345-43ab-feb4-e42f2250067b"
+# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="QJzfTvqSm5tR" outputId="9d537aa7-39bc-4ea2-8f38-59be0561d49a"
 # feature engineering
 
 # ビンの範囲をリストで指定
@@ -351,7 +349,7 @@ for col in cols_for_normal:
 for col in cols_for_normal:
     df_test[col] = qt.fit_transform(df_test[[col]])
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="lqN7YfqZuKA2" outputId="6eb60496-d606-483a-f65f-705f118dc123"
+# + colab={"base_uri": "https://localhost:8080/", "height": 206} id="lqN7YfqZuKA2" outputId="8364de5d-9eb2-44d8-cd42-1da210178e61"
 df_train.head()
 
 # + [markdown] id="lUYg7xrJ6lSM"
@@ -360,37 +358,37 @@ df_train.head()
 # + [markdown] id="R-NCPdVG6lSM"
 # ![image.png](attachment:3447685d-37cc-40f9-8f77-236f02f8608c.png)
 
-# + id="QYhVk02L6lSN" colab={"base_uri": "https://localhost:8080/", "height": 645} outputId="b0a0b016-4538-4519-cc11-2d8f088de00e"
+# + id="QYhVk02L6lSN" colab={"base_uri": "https://localhost:8080/", "height": 645} outputId="4acf4cab-6517-4e13-cd59-12e3de222dfb"
 TARGET = 'Outcome'
 # Import
 from pycaret.classification import *
 # Setup
 clf1 = setup(data=df_train, target=TARGET)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 551, "referenced_widgets": ["5998060cc0cf4e29b0e3d308669bf442", "60363eadeb244569bb6cc998bdbf8a93", "616c0f9868184769a3c2e748b524a16a", "8eee360e00d34cc69e13a20c4b2e44c9", "6a222aacd66a4f68b37a17e314d1eed2", "75cfe8332e244e94b6e09abab6fdaa3b", "b8b0ed6744d0414a94fc1f7798eb9096", "474b572da7bf4e03b7a76c4e5c161a5e", "35473c24fde64cd1a6cd192733135562", "2ebb9768d700484bbc1fe546db68e0cf", "080e77eff3dd466a941daddfe65049bb"]} id="fc2N5DbOlzNW" outputId="11aac894-2842-4e40-94b4-db6c9d0802b2"
+# + colab={"base_uri": "https://localhost:8080/", "height": 551, "referenced_widgets": ["e1f146bd798d4f579a4a056d5a0d1c06", "eb67dbdd04cd4932a773c2c6836beebb", "a22b5e2619e54a4e803a8eedad29998c", "6ead5878e66c4b4baf89916a57ca5870", "bdf8d860994b41d283a2892c80378889", "4c4170847064445dab9f70b81c960236", "4ad23f5960274538892821678921558c", "2724407451b34bd0bc20e4234f4b1589", "9741b556066042f0959b8c9ebf773c21", "64b0b62c86e84fd2886861f0c4635832", "ad6fc5f7ee48425e9cf271fbb2800ed0"]} id="fc2N5DbOlzNW" outputId="6b0a7f59-1637-475b-d373-b6977e8d0f5c"
  best = compare_models()
 
-# + colab={"base_uri": "https://localhost:8080/"} id="bKSqGfLs37pK" outputId="4a55293b-3a37-41a1-ae8c-fb240f99a9fd"
+# + colab={"base_uri": "https://localhost:8080/"} id="bKSqGfLs37pK" outputId="aa8a61e2-2831-4737-f040-6b1162094a60"
 print(best)
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 914, "referenced_widgets": ["920d2714e35c4e4ab1d884044a55ca2b", "38a51abf1cd64767b443a076bdeafccc", "f2cdf00f4ba54463a52834974ca790a9", "91c530e9a3b0438a9c637baf87254e44", "40ba6d83e2d144a8b6f032e0cc29b186", "951dcc1918384baa887be239907e91e9", "3a8655735efa4e2cadd5406aba890083", "5249c24a13d043ab8ed1b659b508d843", "e07e363e643d4a7e82ad92f21ec88871", "3a5572b7496540dfa22fa02a2090cfdb", "06240e1b58f6400091db639bc6f14814", "04cd6a8c647a4e72afcdfbd9a64b8924", "735c49c9060c44e387486636419a7aa1", "0c9f564e77f7451690cb978a7a0a5f3e", "5b087d7f474749ee9205e84f30a7195d", "41359531f4244645bb50082fc1623aa4", "467a094a69f64d2a82cae839ea7ffaaf", "61fe461cf5934ba5bb358c9cd6f48eb3", "e3ddbb22bcc340ce855227bac7dfea94", "bfb011f8d3a3423190f6376765857675", "5cd28a1115e241b9a8ab27e5fbc7278b", "2e0c3b2ae19949c987c180d081963e8d"]} id="fQADdA9EvcjS" outputId="04de0aff-69f8-4df5-d83a-e3618e50bea5"
+# + colab={"base_uri": "https://localhost:8080/", "height": 914, "referenced_widgets": ["9d986e5548904bf2ac5af3a097aa4fdd", "90c529bf7c874791bc8d2f5b86b96756", "41bba87a3f0c443c8ee7bf2267b4694b", "6633b5678802455b8646a424e2e6121a", "4e998dfbf9be491495952e620455a400", "5c3a43a53f7246acbbff6b581c40c71b", "d7814e25ccd54476bf41098a5f593b66", "5b9f398614e548cab9faf548eb4a1fdd", "4a04a0d3c0024b7b85206f10c972a2a1", "65331fb923874327aa0df32b5ea2f76d", "8131ec1ad321491c96db7e881db3a35c", "ef77016cd2c446c690a7ad0b512e966f", "cd8df788ce704a2faa013db6ee86d13b", "72063aef1bf14b4f9d6704881888c98a", "18284908263641a1b7696bc579c06435", "a5ca1c9b544c4cf7971ae93dd6d34f90", "338fa266ba884d00a8578792855b31ae", "b498f3099251400686f3c28b93a56a15", "3142959ed8a34b37a69167d1997f54d0", "d749cc3e843f4931a10810436f567433", "f3bf7f6dd10c4308a083614cd3b6a048", "f0ec399fcbf94755b7ecc3969a77de25"]} id="fQADdA9EvcjS" outputId="f79cde49-1354-4ba7-ee45-98554e6115fd"
 model = create_model('lightgbm')
 #tuned_model = model
 tuned_model = tune_model(model)
 
-# + id="o9qyDCaZxSmc" colab={"base_uri": "https://localhost:8080/", "height": 247, "referenced_widgets": ["e4af12421f2946b99e9b04aa22479ac0", "8ed84e598cf143939b9591c4d05ed0f7", "88726c3a701b486fb94f1364d63516a9", "eb01a3152eb6498fa446600b7522be07", "bf56ad7b8ab44e88ab076a2de8e0a333", "02082e33cd374a0e92c9b8d64ec2a966", "e9e8ce11d3a044d89bca1c0d161d6b2c"]} outputId="2743b5c1-c0fd-4358-d275-fd5b825a9e27"
+# + id="o9qyDCaZxSmc" colab={"base_uri": "https://localhost:8080/", "height": 247, "referenced_widgets": ["490f0f4d1be7435faa1f67252b1daef4", "0f129ea28811415cb2294ea9df4ba5a5", "0bdefa769b9247cbb9d1d35fe7e1154d", "a9cf7190e194448d971d59417b13d5e6", "0e7a9b0b2db64733a0e1229120a5a4de", "5287d6960f7247beb296afba095177e2", "129bb8ce8317481db51267255775d1e4"]} outputId="6186fd9b-7f15-4a67-e5ac-ba73d9947031"
 evaluate_model(tuned_model)
 
 # + id="s1UAz0jm6lSN"
 # Finalize Model
 f_model = finalize_model(tuned_model)
 
-# + id="AzhwbWG-6lSN" colab={"base_uri": "https://localhost:8080/", "height": 592} outputId="b0cb38f6-dd71-4ea4-eba8-e9a579995bd8"
+# + id="AzhwbWG-6lSN" colab={"base_uri": "https://localhost:8080/", "height": 592} outputId="55852ef4-fee9-41df-db5b-a4e270522785"
 # Best Model Prediction
 predict_model(f_model,
               round = 10)
 
-# + id="tbc-71bC6lSN" colab={"base_uri": "https://localhost:8080/", "height": 247, "referenced_widgets": ["0409c24ff049492ba9d5a8f154af0f31", "553c5411fd704a66aad545d0967b2356", "1b2d9586b07a474db93eaac8d37516e7", "f6f01f18a83142a08fbf5f6c2a949a65", "2a1915970dcd471b8d30f4b01d9f1d97", "3f1a24088e7a401c8f1187832f241f86", "bb01450cdf464ca287c67bd4417a6921"]} outputId="e2c12a3c-c449-4aed-9233-5e7661a88915"
+# + id="tbc-71bC6lSN" colab={"base_uri": "https://localhost:8080/", "height": 247, "referenced_widgets": ["551804e54ac747f3853b0a9429e404d1", "ae0932090ed5499888a25c2b0a9de82d", "b68a9f5626324a65875d740f6c6cc35c", "87c7420d7e5e4c62974f3ca46094352e", "69df239a2c1246abb5da3a0ab3a8a97c", "505c39b82ccb436f99a5ffee7cfc7f0f", "57d9ae4e63e14159aee7290ebd0974a1"]} outputId="d8217e97-b057-49d5-97ac-3e5c68ba2764"
 # Evaluate Best Final Model
 evaluate_model(f_model)
 
@@ -403,7 +401,7 @@ evaluate_model(f_model)
 #inf_presence = df_test.isin([np.inf, -np.inf]).values.any()
 #print(inf_presence)
 
-# + id="tr-8IINm6lSO" colab={"base_uri": "https://localhost:8080/", "height": 248} outputId="e18dab52-81f1-44e0-8c4f-f54bf2bd180b"
+# + id="tr-8IINm6lSO" colab={"base_uri": "https://localhost:8080/", "height": 248} outputId="af73a7ec-cde6-402f-df0b-f157ae27d6c5"
 # Making Prediction DataFrame
 p_Light = predict_model(f_model,
                         data=df_test,
@@ -419,10 +417,10 @@ p_Light['Outcome'] =p_Light.apply(
     axis=1
 )
 
-# + colab={"base_uri": "https://localhost:8080/", "height": 143} id="5Q6BRMm5FNnh" outputId="a4859112-a96a-4abd-ceec-76590e4fd9a5"
+# + colab={"base_uri": "https://localhost:8080/", "height": 143} id="5Q6BRMm5FNnh" outputId="c767f5bb-a5aa-4d53-86c9-87daf0e3e756"
 p_Light.head(3)
 
-# + id="lNbSbYud6lSO" colab={"base_uri": "https://localhost:8080/", "height": 206} outputId="32bb2479-dec4-4a3d-ca2b-be22b52a21cb"
+# + id="lNbSbYud6lSO" colab={"base_uri": "https://localhost:8080/", "height": 206} outputId="6a03898a-c816-4a0e-bd5a-f5dedabe718d"
 # Making Submission DF
 submission_df = pd.DataFrame({
     'index': test_id,
