@@ -111,7 +111,7 @@ print("Submission Data:")
 print(f"Number of Rows: {num_submission_rows}")
 print(f"Number of Columns: {num_submission_columns}")
 
-print("Test for Github Action part 2")
+print("Test for Github Action part 4")
 
 # + colab={"base_uri": "https://localhost:8080/"} id="mKNvSa7efpj9" outputId="ba5fae69-3028-4c5c-8850-67696d3ff32f"
 # Null Values in Train
