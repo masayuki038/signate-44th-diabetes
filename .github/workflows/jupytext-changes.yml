@@ -28,7 +28,7 @@ jobs:
         # If we specify we are only interested in added or modified files, deleted files are ignored
         filters: |
             notebooks:
-                - added|modified: '**.md'
+                - added|modified: '**.ipynb'
         # Should we also identify deleted md files
         # and then try to identify (and delete) .ipynb docs otherwise paired to them?
         # For example, remove .ipynb file on same path ($FILEPATH is a file with .md suffix)
@@ -48,7 +48,7 @@ jobs:
         # and has one or more paired docs defined
         # The timestamp on the synched ipynb file will be set to the
         # same time as the changed markdown file
-        jupytext --use-source-timestamp  --sync ${{ steps.filter.outputs.notebooks_files }}
+        jupytext --set-formats ipynb,py:percent --use-source-timestamp --sync ${{ steps.filter.outputs.notebooks_files }}
 
     - name: Get last commit message
       id: last-commit
